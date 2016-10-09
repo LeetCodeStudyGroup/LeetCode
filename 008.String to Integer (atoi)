@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+        if(str == "")
+            return 0;
+        
+        int iResult;
+        istringstream ( str ) >> iResult;
+        
+        return iResult;
+    }
+};
