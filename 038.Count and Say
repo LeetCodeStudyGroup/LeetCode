@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        string result = "1";
+        string tmpResult;
+        int count = 0;
+        char privous = 'f';
+        
+        for (int i = 0; i < n-1; i++) {
+            tmpResult = "";
+            for (int j = 0; j < result.size(); j++) {
+                if (j == 0) {
+                    privous = result[0];
+                    count++;
+                } else if (privous != result[j]) {
+                    stringstream ss;
+                    ss << count;
+                    string strCount = ss.str();
+                    tmpResult = tmpResult + strCount + privous;
+                    count = 1;
+                    privous = result[j];
+                } else {
+                    count++;
+                }
+            }
+            
+            stringstream ss;
+            ss << count;
+            string strCount = ss.str();
+            tmpResult = tmpResult + strCount + privous;
+            count = 0;
+            result = tmpResult;
+        }
+        
+        return result;
+    }
+};
