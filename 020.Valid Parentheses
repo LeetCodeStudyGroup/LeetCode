@@ -1,0 +1,59 @@
+class Solution {
+public:
+    vector<char> temp;
+    
+    bool isValid(string s) {
+        int countTypeOne = 0;
+        int countTypeTwo = 0;
+        int countTypeThree = 0;
+        
+        for(int i = 0; i < s.length(); i++) {
+            switch (s[i]) {
+                case '(':
+                    countTypeOne++;
+                    temp.push_back(s[i]);
+                    break;
+                case '{':
+                    countTypeTwo++;
+                    temp.push_back(s[i]);
+                    break;
+                case '[':
+                    countTypeThree++;
+                    temp.push_back(s[i]);
+                    break;
+                case ')':
+                    countTypeOne--;
+                    if(!isValidChar(s[i]))
+                        return false;
+                    break;
+                case '}':
+                    countTypeTwo--;
+                    if(!isValidChar(s[i]))
+                        return false;
+                    break;
+                case ']':
+                    countTypeThree--;
+                    if(!isValidChar(s[i]))
+                        return false;
+                    break;
+            }
+            if((countTypeOne < 0) || (countTypeTwo < 0) || (countTypeThree < 0))
+                return false;
+        }
+        if((countTypeOne != 0) || (countTypeTwo != 0) || (countTypeThree != 0))
+            return false;
+        else
+            return true;
+    }
+    
+    bool isValidChar(char c) {
+        if(temp.size() == 0)
+            return false;
+        char popChar = temp.back();
+        temp.pop_back();
+        if ((c == '}' && popChar == '{') || (c == ']' && popChar == '[') || (c == ')' && popChar == '('))
+            return true;
+        else
+            return false;
+    }
+};
