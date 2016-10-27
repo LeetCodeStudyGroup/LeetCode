@@ -11,13 +11,15 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
+        if not root:
+            return []
         result = []
-        self.preorder(result, root)
+        nodes = [root]
+        while len(nodes) > 0:
+            node = nodes.pop()
+            result.append(node.val)
+            if node.right:
+                nodes.append(node.right)
+            if node.left:
+                nodes.append(node.left)
         return result
-    
-    def preorder(self, result, node):
-        if not node:
-            return
-        result.append(node.val)
-        self.preorder(result, node.left)
-        self.preorder(result, node.right)
