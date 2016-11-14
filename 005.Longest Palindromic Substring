@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if(s.length() <= 1)
+            return s;
+        string max = s.substr(0,1); // substr from index 0 and length is 1
+        
+        for(int i=0; i<s.size(); i++) {
+            int leftIndex = i;
+            int rightIndex = i;
+            while (rightIndex < s.size() && s[i] == s[rightIndex+1]) rightIndex++; // Skip duplicate characters.
+            while (leftIndex > 0 && rightIndex < s.size()-1 && (s[leftIndex-1] == s[rightIndex+1])) {
+                leftIndex--;
+                rightIndex++;
+            }
+            int palindromeSize = rightIndex-leftIndex+1;
+            if(palindromeSize > max.size()) {
+                max = s.substr(leftIndex, palindromeSize);
+                
+            }
+        }
+        return max;
+    }
+};
