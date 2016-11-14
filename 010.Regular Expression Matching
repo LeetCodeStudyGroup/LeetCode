@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        if(s.size()==0 && p.size()==0)
+            return true;
+        int size = (s.size() < p.size()) ? s.size() : p.size();
+        int indexS = 0;
+        int indexP = 0;
+        
+        while(indexS <s.size() && indexP < p.size()) {
+            if((indexS+1 < s.size() && s[indexS] == '.' && s[indexS+1] == '*') 
+                || (indexP+1 < p.size() && p[indexP] == '.' && p[indexP+1] == '*'))
+                return true;
+            if((s[i] == '.') || (p[i] == '.') || (s[indexS] == p[indexP])) {
+                indexS++;
+                indexP++;
+            } else {
+                if(s.size() > indexS+1 && s[indexS+1] == '*') {
+                    
+                } else if(p.size() > indexP+1 && p[indexP+1] == '*') {
+                    
+                }
+            }
+        }
+    }
+};
