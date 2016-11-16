@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isEqual(string h, string n, int indexH) {
+        for (int i=0; i<n.size(); i++) {
+            if(h[indexH+i] != n[i]) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    int strStr(string haystack, string needle) {
+        if(haystack == "" && needle == "")
+            return 0;
+        else if(haystack == "")
+            return -1;
+        else if(needle == "")
+            return 0;
+        int i=0;
+        int j=0;
+        while (i<haystack.size() && j<needle.size()) {
+            if(haystack[i] == needle[j] && needle.size() <= haystack.size() -i) {
+                // needle.size() <= haystack.size() -i --> to make sure subString length > string length - currentIndex
+                if(isEqual(haystack, needle, i))
+                    return i;
+            }
+            i++;
+        } 
+        
+        return -1;
+    }
+};
