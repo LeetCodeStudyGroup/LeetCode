@@ -1,40 +1,14 @@
 class Solution {
 public:
     bool isMatch(string s, string p) {
-        if(s.size()==0 && p.size()==0)
-            return true;
-        int indexS = 0;
-        int indexP = 0;
-        
-        if(p == ".*")
-            return true;
-            
-        while(indexS < s.size() && indexP < p.size()) {
-            if(p[indexP] == s[indexS] || p[indexP] == '.') {
-                // p[indexP] == '.' always true
-                if(p.size() > indexP+1 && p[indexP+1] == '*') {
-                    char charStar = s[indexS];
-                    indexP++;
-                    while(indexS < s.size() && s[indexS] == charStar) indexS++;
-                } else {
-                    indexS++;
-                }
-            } else {
-                if(p.size() > indexP+1 && p[indexP+1] == '*') {
-                    char charStar = p[indexP];
-                    indexP++;
-                    while(indexS < s.size() && s[indexS] == charStar) indexS++;
-                } else {
-                    return false;
-                }
-            }
-            
-            indexP++;
-        }
-        
-        if(indexS >= s.size() && indexP >= p.size())
-            return true;
-        else
-            return false;
+        int m = s.length(), n = p.length(); 
+        vector<vector<bool> > dp(m + 1, vector<bool> (n + 1, false));
+        dp[0][0] = true;
+        for (int i = 0; i <= m; i++)
+            for (int j = 1; j <= n; j++)
+                if (p[j - 1] == '*')
+                    dp[i][j] = dp[i][j - 2] || (i > 0 && (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]);
+                else dp[i][j] = i > 0 && dp[i - 1][j - 1] && (s[i - 1] == p[j - 1] || p[j - 1] == '.');
+        return dp[m][n];
     }
 };
