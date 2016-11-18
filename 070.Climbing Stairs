@@ -1,0 +1,31 @@
+class Solution {
+public:
+
+    int factorial(int n)
+    {
+        if(n == 1)
+            return 1;
+        else
+            return n * factorial(n - 1) ;
+    }
+    
+    int climbStairs(int n) {
+        cout << n << endl;
+        int count = 1;
+        if(n == 0)
+            return 0;
+            
+        int twoMax = n / 2;
+        
+        // cout << "twoMax = " << twoMax << endl;
+        for(int i=1; i<=twoMax; i++) {
+            int totalSize = n - i;
+            // C totalSize get i
+            // cout << "totalSize = " << totalSize << ", i = " << i << endl;
+            count += factorial(totalSize) / (factorial(i) * factorial(totalSize - i));
+            // cout << count << endl;
+        }
+        
+        return count; 
+    }
+};
