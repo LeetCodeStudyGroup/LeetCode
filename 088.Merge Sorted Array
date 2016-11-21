@@ -1,0 +1,28 @@
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        if(n == 0)
+            return;
+        int index1, index2 = 0;
+        vector<int>::iterator iter = nums1.begin();
+        while (index1<m+index2 && index2<n) {
+            if (nums1[index1] >= nums2[index2]) {
+                for (int i=m+n-1; i>index1; i--) {
+                    nums1[i] = nums1[i-1];
+                }
+                nums1[index1] = nums2[index2++];
+            } else {
+                index1++;
+            }
+        }
+        
+        index1 = m+index2;
+        while (index2 < n) {
+            nums1[index1] = nums2[index2++];
+            index1++;
+        }
+    }
+};
