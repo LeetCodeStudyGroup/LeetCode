@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-    bool isSameNode(TreeNode* p, TreeNode* q) {
+    bool isSameTree(TreeNode* p, TreeNode* q) {
         if(p == NULL && q == NULL)
             return true;
         else if(p == NULL || q == NULL)
@@ -17,10 +17,6 @@ public:
         
         if(p->val != q->val)
             return false;
-        return isSameNode(p->left, q->left) && isSameNode(p->right, q->right);
-    }
-
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-            return isSameNode(p, q);
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
