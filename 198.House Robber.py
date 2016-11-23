@@ -4,6 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        include = exclude = 0
+        for num in nums:
+            inc, exc = include, exclude
+            include, exclude = exclude + num, max(inc, exc)
+        return max(include, exclude)
+
+    def rob2(self, nums):
         if len(nums) == 0:
             return 0
         elif len(nums) == 1:
