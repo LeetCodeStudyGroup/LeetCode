@@ -1,0 +1,42 @@
+#include <vector>
+#include <iostream>
+using namespace std;
+
+class MinStack {
+public:
+    vector<int> stack;
+    vector<int> minimumStack;
+    /** initialize your data structure here. */
+    MinStack() {
+    }
+    
+    void push(int x) {
+        stack.push_back(x);
+        if(minimumStack.size() == 0)
+            minimumStack.push_back(x);
+        else
+            minimumStack.push_back(minimumStack.back() > x ? x : minimumStack.back());
+    }
+    
+    void pop() {
+        stack.pop_back();
+        minimumStack.pop_back();
+    }
+    
+    int top() {
+        return stack.back();
+    }
+    
+    int getMin() {
+        return minimumStack.back();
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
