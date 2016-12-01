@@ -1,0 +1,20 @@
+// #include <iostream>
+// #include <string>
+// #include <sstream>
+// using namespace std;
+
+class Solution {
+public:
+
+    int singleNumber(vector<int>& nums) {
+        if (nums.size() == 0)
+            return 0;
+        // string result = std::bitset<16>(nums[0]).to_string(); // to binary
+        int result = nums[0];
+        for (int i=1; i<nums.size(); i++) {
+            result = result ^ nums[i];
+        }
+        
+        return result;
+    }
+};
