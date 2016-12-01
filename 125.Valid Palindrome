@@ -1,0 +1,52 @@
+class Solution {
+public:
+    
+    bool isPalindrome(string s) {
+        if (s.empty()) {
+            return true;
+        }
+        
+        int front = 0;
+        int end = s.size() - 1;
+        while (front < end) {
+            // while (isalnum(s[front]) == false && front < end) {
+            //     front++;
+            // }
+            while (front < end) {
+                int asciiCharFront = int(s[front]);
+                if ((asciiCharFront <= 90 && asciiCharFront >= 65) || (asciiCharFront <= 57 && asciiCharFront >= 48)) {
+                    break;
+                } else if (asciiCharFront <= 122 && asciiCharFront >= 97) {
+                    s[front] = char(asciiCharFront-32);
+                    break;
+                } else {
+                    front++;
+                }
+            }
+            
+            // while (isalnum(s[end]) == false && front < end) {
+            //     end--;
+            // }
+            while (front < end) {
+                int asciiCharEnd = int(s[end]);
+                if ((asciiCharEnd <= 90 && asciiCharEnd >= 65) || (asciiCharEnd <= 57 && asciiCharEnd >= 48)) {
+                    // asciiCharEnd <= 57 && asciiCharEnd >= 48 are numbers
+                    break;
+                } else if (asciiCharEnd <= 122 && asciiCharEnd >= 97) {
+                    // transfer to lower case
+                    s[end] = char(asciiCharEnd-32);
+                    break;
+                } else {
+                    end--;
+                }
+            }
+            
+            if (front < end && s[front] != s[end])
+                return false;
+            // if (toupper(s[front]) != toupper(s[end]))
+            //     return false;
+            front++; end--;
+        }
+        return true;
+    }
+};
