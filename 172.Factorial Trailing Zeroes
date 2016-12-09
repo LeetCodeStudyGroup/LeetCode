@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int zeroCount = 0;
+        for (int i=n; i>0; i--) {
+            zeroCount += n/5;
+            n /= 5;
+        }
+        
+        return zeroCount;
+    }
+};
