@@ -1,0 +1,20 @@
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int previous1 = 0;
+        int previous2 = 0;
+        if (nums.size() == 0)
+            return 0;
+        else {
+            for (int i=0; i<nums.size(); i++) {
+                int result = std::max(previous1, previous2 + nums[i]); 
+                previous2 = previous1;
+                previous1 = result;
+            }
+            return previous1;
+        }
+    }
+};
