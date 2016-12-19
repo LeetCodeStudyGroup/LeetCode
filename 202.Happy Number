@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> nums;
+    bool isHappy(int n) {
+        int result = 0;
+        for (int i=0; i<nums.size();i++) {
+            if (nums[i] == n)
+                return false;
+        }
+        nums.push_back(n);
+        while (n > 0) {
+            int mod = n % 10;
+            result = mod * mod + result;
+            n /= 10;
+        }
+        
+        if (result == 1)
+            return true;
+        else
+            return isHappy(result);
+    }
+};
+
+//============ improve version =================
+public boolean isHappy(int n) {
+    Set<Integer> inLoop = new HashSet<Integer>();
+    int squareSum,remain;
+	while (inLoop.add(n)) {
+		squareSum = 0;
+		while (n > 0) {
+		    remain = n%10;
+			squareSum += remain*remain;
+			n /= 10;
+		}
+		if (squareSum == 1)
+			return true;
+		else
+			n = squareSum;
+
+	}
+	return false;
+
+}
