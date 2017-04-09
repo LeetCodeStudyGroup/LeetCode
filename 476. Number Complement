@@ -1,0 +1,15 @@
+476. Number Complement
+https://leetcode.com/problems/hamming-distance/#/description
+
+public class Solution {
+    public int findComplement(int num) {
+        int count = 0;
+        int shiftTimesControl = num;     // clone一份用來做shift並中止while
+        while (shiftTimesControl != 0) {
+            shiftTimesControl >>= 1;    // 技巧1: 每次往右移, 所以while 結束次數取決於最左邊的bit是在第幾位數的bit
+            num ^= (1 << count);        // 技巧2: 每次跟一個bit 1 做xor,  (1 << count 與 count++確保每次1都往左移的)
+            count++;
+        }
+        return num;
+    }
+}    
