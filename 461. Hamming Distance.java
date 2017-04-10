@@ -1,7 +1,8 @@
-461. Hamming Distance
-https://leetcode.com/problems/hamming-distance/#/description
-
-[Solution 1]
+/*
+* 461. Hamming Distance
+* https://leetcode.com/problems/hamming-distance/#/description
+*/
+/* [Solution 1] */
 public class Solution {
     public int hammingDistance(int x, int y) {
         int xor = x ^ y, count = 0;  // 對x, y做xor
@@ -13,7 +14,7 @@ public class Solution {
     }
 }
 
-[Solution 2]
+/* [Solution 2] */
 public class Solution {
     public int hammingDistance(int x, int y) {
         int xor = x ^ y, count = 0;   // 對x, y做xor
