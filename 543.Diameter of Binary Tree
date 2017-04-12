@@ -1,0 +1,40 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxDeep = 0;
+    int diameterOfBinaryTree(TreeNode* root) {
+        maxDiameter(root, 0);
+        
+        return maxDeep > 0 ? maxDeep-1 : 0;
+    }
+    
+    int maxDiameter(TreeNode* node, int level) {
+        if (node == NULL)
+            return 0;
+            
+        int left = maxDiameter(node->left, level);
+        int right = maxDiameter(node->right, level);
+        int current = left + right + 1;
+        
+        if (current > maxDeep)
+            maxDeep = current;
+
+        
+        return max(left, right) + 1;
+    }
+    
+    int max(int num1, int num2) {
+        if (num1 > num2)
+            return num1;
+        else
+            return num2;
+    }
+};
