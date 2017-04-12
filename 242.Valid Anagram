@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        // Anagram is a form of word play in which letters of a word or phrase are rearranged in such a way that a new word or phrase is formed.
+        // 字數要一樣，字母順序重新安排
+        if (t.length() != s.length())
+            return false;
+            
+        int existInS[26] = {0};
+        
+        for (int i=0; i<s.size(); i++) {
+            existInS[s[i] - 'a']++;
+            existInS[t[i] - 'a']--;
+        }
+        
+        for (int i=0; i<26; i++) {
+            if (existInS[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
