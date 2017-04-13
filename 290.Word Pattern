@@ -1,0 +1,30 @@
+import java.util.Vector;
+
+public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] array = str.split(" ", -1);
+        int size = array.length > pattern.length() ? pattern.length() : array.length;
+        
+        if (array.length != pattern.length())
+            return false;
+        
+        Vector record = new Vector();
+        for (int i=0; i<size; i++) {
+            String saveStr = "";
+            for (int j=0; j<record.size(); j++) {
+                if (array[i].equals(record.get(j))) {
+                    saveStr = array[i];
+                    if (pattern[j]-'a' == j)
+                        break;
+                    else
+                        return false;
+                }
+            }
+            
+            if (!saveStr.equals(""))
+                record.add(saveStr);
+        }
+        
+        return true;
+    }
+}
