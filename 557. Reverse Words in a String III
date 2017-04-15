@@ -1,0 +1,14 @@
+public class Solution {
+    public String reverseWords(String s) {
+        String[] sp= s.split(" ");
+        String answer = "";
+        for(int i = 0; i < sp.length; i++) {
+            String reverse = new StringBuffer(sp[i]).reverse().toString();
+            System.out.println(reverse);
+            answer += reverse;
+            if (i <sp.length -1)
+                answer += " ";
+        }
+        return answer;
+    }
+}
