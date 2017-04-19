@@ -57,3 +57,31 @@ public:
             return false;
     }
 };
+
+// =========== improve ================
+class Solution {
+public:
+    
+    bool isValid(string s) {
+        vector<char> temp;  
+        if(s.size() ==0) return false;  
+        temp.push_back(s[0]);  
+        for(int i =1; i< s.size(); i++) {  
+            if(s[i] == '(' || s[i] == '[' || s[i] == '{') {  
+                temp.push_back(s[i]);  
+                continue;
+            }  
+            char current = temp.back();  
+            if(s[i] == ')' && current != '(')  
+                return false;  
+            if(s[i] == ']' && current != '[')  
+                return false;  
+            if(s[i] == '}' && current != '{')  
+                return false;  
+            temp.pop_back();  
+        }  
+        if(temp.size() !=0)
+            return false;  
+        return true;  
+    }
+};
