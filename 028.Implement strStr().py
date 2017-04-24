@@ -20,7 +20,11 @@ class Solution(object):
 
         for i in range(len(haystack)):
             if source == target:
-                return i
+                for inx in range(len(needle)):
+                    if needle[inx] != haystack[inx + i]:
+                        break
+                if inx == len(needle) - 1:
+                    return i
             if len(needle) + i >= len(haystack):
                 break
             source = source * base + ord(haystack[i + len(needle)])
