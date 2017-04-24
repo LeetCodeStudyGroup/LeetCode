@@ -1,10 +1,36 @@
 class Solution(object):
-    def strStr(self, haystack, needle):
+    def strStr_Rabin_Karp(self, haystack, needle):
         """
         :type haystack: str
         :type needle: str
         :rtype: int
         """
+        if haystack == None or needle == None or len(haystack) < len(needle):
+            return -1
+        if len(needle) == 0 or needle == "":
+            return 0
+
+        hash_size, base = 10 ** 6, 31
+        source = target = 0
+        for i in range(len(needle)):
+            target = target * base + ord(needle[i])
+            target %= hash_size
+            source = source * base + ord(haystack[i])
+            source %= hash_size
+
+        for i in range(len(haystack)):
+            if source == target:
+                return i
+            if len(needle) + i >= len(haystack):
+                break
+            source = source * base + ord(haystack[i + len(needle)])
+            source -= (base ** len(needle)) * ord(haystack[i]) 
+            if source < 0:
+                source += hash_size
+            source %= hash_size
+        return -1
+
+    def strStr_KMP(self, haystack, needle):
         if len(needle) == 0:
             return 0
         T = [0] * len(needle)
@@ -24,7 +50,6 @@ class Solution(object):
             else:
                 T[pos] = 0
                 pos += 1
-
         index = i = j = 0
         while index < len(haystack):
             while i < len(haystack) and j < len(needle):
