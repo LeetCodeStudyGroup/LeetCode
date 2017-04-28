@@ -10,12 +10,13 @@ class Solution {
         return isBalancedBool
     }
     
+    // return: 最深的子樹深度
     func helper(_ root: TreeNode?) -> Int {
         
         if !isBalancedBool {
             return -1
         }
-
+        
         var leftDepth = 0
         if root?.left != nil {
             leftDepth = helper(root?.left)
@@ -26,14 +27,11 @@ class Solution {
             rightDepth = helper(root?.right)
         }
         
-        if isBalancedBool {
-            isBalancedBool = isBalancedTree(leftDepth, rightDepth)
-            // 1 is this node
-            return 1 + max(leftDepth, rightDepth)
-            
-        } else {
-            return -1
+        if !isBalancedTree(leftDepth, rightDepth) {
+            isBalancedBool = false
         }
+        
+        return 1 + max(leftDepth, rightDepth)
     }
     
     func isBalancedTree(_ leftDepth: Int, _ rightDepth: Int) -> Bool {
