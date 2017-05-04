@@ -1,0 +1,104 @@
+class VertexNode {
+    var inDegree: Int = 0
+    var requsites = Queue<Int>()
+    
+    init(_ indegree: Int, _ queue: Queue<Int>) {
+        self.inDegree = indegree
+        self.requsites = queue
+    }
+}
+
+class Solution {
+    var coursesRequsite: Dictionary<Int, VertexNode> = [:]
+    var bfsQueue = Queue<VertexNode>()
+    var result = [Int]()
+
+    func findOrder(_ numCourses: Int, _ prerequisites: [[Int]]) -> [Int] {
+        // add classes
+        for course in 0 ..< numCourses {
+            coursesRequsite[course] = VertexNode(0, Queue())
+        }
+        
+        // add 修課限制 (建立拓樸)
+        for requisite in prerequisites {
+            
+            // 將需要此課程 當成 先修課 的課程加入
+            let preCourse = requisite[1]
+            let beBlockedCourse = requisite[0]
+            
+            // add 限制
+            coursesRequsite[preCourse]?.requsites.enqueue(beBlockedCourse)
+            
+            // add indegree
+            coursesRequsite[beBlockedCourse]?.inDegree += 1
+        }
+        
+        // 執行 拓樸
+        findIndegreeZeroIntoBFSQueue()
+        
+        while !bfsQueue.isEmpty {
+            if let firstItem = bfsQueue.dequeue() {
+                
+                while !firstItem.requsites.isEmpty {
+                    let beBlockedCourse = firstItem.requsites.dequeue()!
+                    coursesRequsite[beBlockedCourse]?.inDegree -= 1
+                    
+                    if coursesRequsite[beBlockedCourse]?.inDegree == 0 {
+                        result.append(beBlockedCourse)
+                        bfsQueue.enqueue(coursesRequsite[beBlockedCourse]!)
+                        coursesRequsite.removeValue(forKey: beBlockedCourse)
+                    }
+                }
+            }
+            
+//            findIndegreeZeroIntoBFSQueue()
+        }
+        
+        if result.count != numCourses {
+            return []
+        }
+        
+        return result
+    }
+    
+    // 找出 內分支度為 0, 加入 bfsQueue, 並且 在coursesRequsite刪除該 node
+    func findIndegreeZeroIntoBFSQueue() {
+        for (course, vertexNode) in coursesRequsite {
+            if vertexNode.inDegree == 0 {
+                result.append(course)
+                bfsQueue.enqueue(vertexNode)
+                coursesRequsite.removeValue(forKey: course)
+            }
+        }
+    }
+    
+   
+}
+
+public struct Queue<T> {
+    fileprivate var array = [T]()
+    
+    public var isEmpty: Bool {
+        return array.isEmpty
+    }
+    
+    public var count: Int {
+        return array.count
+    }
+    
+    public mutating func enqueue(_ element: T) {
+        array.append(element)
+    }
+    
+    public mutating func dequeue() -> T? {
+        if isEmpty {
+            return nil
+        } else {
+            return array.removeFirst()
+        }
+    }
+    
+    public var front: T? {
+        return array.first
+    }
+}
