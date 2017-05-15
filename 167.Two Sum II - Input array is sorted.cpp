@@ -19,7 +19,7 @@ public:
                 result.push_back(index2+1);
                 
                 return result;
-            } else if (sum < target) {
+            } else if (sum > target) {
                 index2--;
             } else {
                 index1++;
