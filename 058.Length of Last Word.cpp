@@ -1,3 +1,13 @@
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        int totalLength =  s.trim().length(); //去掉頭尾空白的長度
+        int LastSpaceIndex = s.trim().lastIndexOf(" ");
+        
+        
+        return totalLength - LastSpaceIndex - 1;
+    }
+}
+//==========================================================
 class Solution {
 public:
     vector<string> split(const string &s, char delim) {
