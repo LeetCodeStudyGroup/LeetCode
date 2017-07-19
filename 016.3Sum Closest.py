@@ -1,10 +1,38 @@
-class Solution(object):
+class Solution(object):class Solution(object):
     def threeSumClosest(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: int
         """
+        if len(nums) < 3:
+            return None
+        nums.sort()
+        closest = nums[0] + nums[1] + nums[2]
+        i = 0
+        while i < len(nums) - 2:
+            j, k = i + 1, len(nums) - 1
+            while j < k and j < len(nums) and k > 0:
+                val = nums[i] + nums[j] + nums[k]
+                diff = target - val
+                if abs(diff) < abs(target - closest):
+                    closest = val
+                if diff == 0:
+                    return target
+                elif diff > 0:
+                    j += 1
+                    while j < len(nums) and nums[j] == nums[j - 1]:
+                        j += 1
+                else:
+                    k -= 1
+                    while k > 0 and nums[k] == nums[k + 1]:
+                        k -= 1
+            i += 1
+            while i < len(nums) and nums[i] == nums[i - 1]:
+                i += 1
+        return closest
+
+    def threeSumClosest2(self, nums, target):
         if len(nums) == 0:
             return None
         elif len(nums) == 1:
