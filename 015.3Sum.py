@@ -1,9 +1,40 @@
-class Solution(object):
+class Solution(object):class Solution(object):
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        rst = []
+        if len(nums) < 3:
+            return rst
+        nums.sort()
+        i = 0
+        while i < len(nums) - 2:
+            j, k = i + 1, len(nums) - 1
+            while j < k and j < len(nums) and k >= 0:
+                sum_val = nums[j] + nums[k]
+                if nums[i] + sum_val == 0:
+                    rst.append([nums[i], nums[j], nums[k]])
+                    j += 1
+                    while j < len(nums) and nums[j] == nums[j - 1]:
+                        j += 1
+                    k -= 1
+                    while k >= 0 and nums[k] == nums[k + 1]:
+                        k -= 1
+                elif nums[i] + sum_val < 0:
+                    j += 1
+                    while j < len(nums) and nums[j] == nums[j - 1]:
+                        j += 1
+                else:
+                    k -= 1
+                    while k >= 0 and nums[k] == nums[k + 1]:
+                        k -= 1
+            i += 1
+            while i < len(nums) and nums[i] == nums[i - 1]:
+                i += 1
+        return rst
+
+    def threeSum2(self, nums):
         result = []
         num_map = {}
         i = 2
