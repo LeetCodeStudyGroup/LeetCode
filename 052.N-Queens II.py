@@ -9,8 +9,8 @@ class Solution(object):
     def canPlace(self, curList, j):
         left = right = j
         for inx in range(len(curList) - 1, -1, -1):
-            left -=1
-            right +=1
+            left -= 1
+            right += 1
             if curList[inx] == left or curList[inx] == right or curList[inx] == j:
                 return False
         return True
