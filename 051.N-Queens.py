@@ -6,19 +6,19 @@ class Solution(object):
         """
         result = []
         if n > 0:
-            self.dfs(result, [], set(), n)
+            self.dfs(result, [], n)
         return result
 
-    def canPlace(self, curList, mark, j):
+    def canPlace(self, curList, j):
         left = right = j
         for inx in range(len(curList) - 1, -1, -1):
             left -=1
             right +=1
-            if curList[inx] == left or curList[inx] == right:
+            if curList[inx] == left or curList[inx] == right or curList[inx] == j:
                 return False
         return True
 
-    def dfs(self, result, curList, mark, n):
+    def dfs(self, result, curList, n):
         if n == len(curList):
             res = []
             for inx in curList:
@@ -33,11 +33,7 @@ class Solution(object):
             return
 
         for j in range(n):
-            if j not in mark:
-                if self.canPlace(curList, mark, j):
-                    curList.append(j)
-                    mark.add(j)
-                    self.dfs(result, curList, mark, n)
-                    curList.pop()
-                    mark.remove(j)
-        
+            if self.canPlace(curList, j):
+                curList.append(j)
+                self.dfs(result, curList, n)
+                curList.pop()
