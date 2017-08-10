@@ -5,15 +5,13 @@ class Solution(object):
         :type S: int
         :rtype: int
         """
-        table, sets = {0:1}, set([0])
+        table = {0:1}
         for num in nums:
-            next_table, next_set = {}, set()
-            for key in sets:
+            next_table = {}
+            for key in table.keys():
                 self.map_add(next_table, key + num, table[key])
                 self.map_add(next_table, key - num, table[key])
-                next_set.add(key + num)
-                next_set.add(key - num)
-            table, sets = next_table, next_set
+            table = next_table
         return table[S] if S in table else 0
 
     def map_add(self, table, key, value):
