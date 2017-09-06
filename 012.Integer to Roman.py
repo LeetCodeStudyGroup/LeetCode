@@ -20,10 +20,6 @@ class Solution(object):
         return rst
 
     def intToRoman2(self, num):
-        """
-        :type num: int
-        :rtype: str
-        """
         ret = ""
         inx = self.get_best_pos(num, len(numbers) - 1)
         while num > 0 and inx >= 0:
