@@ -7,6 +7,23 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
+        roman_str = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+        roman_val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        i = 0
+        rst = ''
+        while num > 0:
+            if roman_val[i] > num:
+               i += 1
+            else:
+                num -= roman_val[i]
+                rst += roman_str[i]
+        return rst
+
+    def intToRoman2(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
         ret = ""
         inx = self.get_best_pos(num, len(numbers) - 1)
         while num > 0 and inx >= 0:
