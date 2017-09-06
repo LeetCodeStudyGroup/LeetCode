@@ -62,6 +62,39 @@ class SegTreeNode:
         self.start, self.end, self.sum = start, end, 0
         self.left = self.right = None
 
+class NumArray2(object):
+
+    def __init__(self, nums):
+        self.nums = nums
+        self.bit = [0] * (len(nums) + 1)
+        self.build()
+        print self.bit
+
+    def build(self):
+        for i, num in enumerate(self.nums):
+            self.edit(i, num)
+
+    def edit(self, i, val):
+        i += 1
+        while i < len(self.bit):
+            self.bit[i] += val
+            i += i & -i
+
+    def sum(self, i):
+        rst = 0
+        i += 1
+        while i > 0:
+            print self.bit[i]
+            rst += self.bit[i]
+            i -= i & -i
+        return rst
+
+    def update(self, i, val):
+        self.edit(i, val - self.nums[i])
+        self.nums[i] = val
+
+    def sumRange(self, i, j):
+        return self.sum(j) - self.sum(i - 1)
 
 # Your NumArray object will be instantiated and called as such:
 # numArray = NumArray(nums)
