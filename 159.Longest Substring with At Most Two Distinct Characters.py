@@ -4,6 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        rst = 0
+        i, j = 0, -1
+        for k in range(len(s)):
+            if k > 0 and s[k] == s[k - 1]:
+                continue
+            if j > -1 and s[k] != s[j]:
+                rst = max(rst, k - i)
+                i = j + 1
+            j = k - 1
+        return max(rst, len(s) - i)
+
+    def lengthOfLongestSubstringTwoDistinct2(self, s):
         from collections import defaultdict
         mem = defaultdict(int)
         rst = 0
