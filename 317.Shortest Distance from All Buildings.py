@@ -21,7 +21,7 @@ class Solution(object):
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    dis = self.bfs(grid, m, n, i, j, building, maps)
+                    dis = self.bfs(grid, m, n, i, j, maps)
         for i in range(m):
             for j in range(n):
                 if maps[i][j][1] == building:
@@ -29,7 +29,7 @@ class Solution(object):
                         rst = maps[i][j][0]
         return rst
 
-    def bfs(self, grid, m, n, si, sj, count, maps):
+    def bfs(self, grid, m, n, si, sj, maps):
         mark = [[0] * n for _ in range(m)]
         mark[si][sj] = 1
         q = deque([(si, sj)])
