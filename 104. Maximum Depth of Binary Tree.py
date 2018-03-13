@@ -15,15 +15,8 @@ class Solution(object):
         if root is None:
             return 0
 
-        if root.left is None and root.right is None:
-            return 1
-
-        left_subtree_depth = 0
-        right_subtree_depth = 0
-        if root.left is not None:
-            left_subtree_depth = self.maxDepth(root.left)
-
-        if root.right is not None:
-            right_subtree_depth = self.maxDepth(root.right)
+        left_subtree_depth = self.maxDepth(root.left)
+        right_subtree_depth = self.maxDepth(root.right)
 
         return 1 + max(left_subtree_depth, right_subtree_depth)
+    
