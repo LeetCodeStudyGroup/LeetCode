@@ -1,0 +1,59 @@
+1. Introduction to Dynamic Programming
+114. Unique Paths => 62
+669. Coin Change => 322
+191. Maximum Product Subarray => 152
+116. Jump Game => 55
+
+2. A Peek into Dynamic Programming + Dynamic Programming on Coordinates
+397. Longest Continuous Increasing Subsequence => 674
+115. Unique Paths II => 63
+110. Minimum Path Sum => 64
+664. Counting Bits => 338
+553. Bomb Enemy => 361
+515. Paint House => 256
+512. Decode Ways => 91
+
+3. Dynamic Programming on Sequences
+843. Digital Flip
+151. Best Time to Buy and Sell Stock III => 123
+150. Best Time to Buy and Sell Stock II => 122
+149. Best Time to Buy and Sell Stock => 121
+76. Longest Increasing Subsequence => 300
+516. Paint House II => 265(Lock)
+393. Best Time to Buy and Sell Stock IV => 188
+
+Optional:
+602. Russian Doll Envelopes => 354
+
+4. Dynamic Programming on Partitioning, Bit operation, Longest Subsequence and Game Theory
+564. Combination Sum IV => 377
+563. Backpack V
+513. Perfect Squares => 279
+394. Coins in a Line => 292. Nim Game
+108. Palindrome Partitioning II => 132
+92. Backpack
+437. Copy Books
+
+5. Dynamic Programming on Knapsack and Intervals
+667. Longest Palindromic Subsequence => 516
+125. Backpack II
+168. Burst Balloons => 312
+440. Backpack III
+430. Scramble String => 87
+396. Coins in a Line III
+
+6. Dynamic Programming on Double Sequence
+668. Ones and Zeroes => 474
+119. Edit Distance => 72
+118. Distinct Subsequences => 115
+77. Longest Common Subsequence
+29. Interleaving String => 97
+192. Wildcard Matching => 44
+154. Regular Expression Matching => 10
+
+7. Special Class on Hard Problems in Dynamic Programming
+752. Rogue Knight Sven
+436. Maximal Square => 221
+676. Decode Ways II => 639
+623. K Edit Distance => 161. One Edit Distance (Lock)
+89. k Sum
