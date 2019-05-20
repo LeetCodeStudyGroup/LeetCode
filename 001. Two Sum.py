@@ -6,15 +6,16 @@ class Solution:
         :rtype: List[int]
         """
         
-        if nums is None or len(nums) < 2:
+        if len(nums) < 2:
             return []
         
-        temp_dict = {}
-        for index in range(len(nums)):
-            diff_num = target - nums[index]
-            if diff_num in temp_dict:
-                return [temp_dict[diff_num], index]
-            else:
-                temp_dict[nums[index]] = index
+        temp = dict()
+        for idx in range(len(nums)):
+            comp = target - nums[idx]
             
+            if comp in temp.keys():
+                return [temp[comp], idx]
+            else:
+                temp[nums[idx]] = idx
+                
         return []
