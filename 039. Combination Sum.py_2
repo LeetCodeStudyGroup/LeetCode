@@ -1,0 +1,25 @@
+class Solution:
+    def combinationSum(self, candidates, target):
+        result = [] 
+        candidates.sort()
+        self.helper(candidates, target, [], 0, result)
+        
+        return result
+        
+
+    def helper(self, candidates, target, subCandidates, index, result):
+        for idx in range(index, len(candidates)):
+            _sum = sum(subCandidates)
+            if _sum + candidates[idx] == target:
+                subCandidates.append(candidates[idx])
+                result.append(subCandidates)
+                return
+
+            if _sum + candidates[idx] < target:
+                nextSubCandidates = subCandidates.copy()
+                nextSubCandidates.append(candidates[idx])
+                self.helper(candidates, target, nextSubCandidates, idx, result)
+
+            if _sum + candidates[idx] > target:
+                return
+                
