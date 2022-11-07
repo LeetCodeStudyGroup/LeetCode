@@ -26,19 +26,15 @@
      */
 
     public int climbStairs(int n) {
-        if (n <= 0)
-            return 0;
-        if (n <= 2)
+        int[] result = new int[n+1];
+        if (n <= 1)
             return n;
-
-        int one_step_before = 2;
-        int two_steps_before = 1;
-        int now = 0;
-
-        for(int i=2; i<n; i++){
-            now = one_step_before + two_steps_before;
-            two_steps_before = one_step_before;
-            one_step_before = now;
+        result[0] = 1;
+        result[1] = 1;
+        
+        for (int i=2; i<=n; i++) {
+            result[i] = result[i-1] + result[i-2];
         }
-        return now;
+        
+        return result[n];
     }
