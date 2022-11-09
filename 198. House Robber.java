@@ -25,9 +25,8 @@
         int[] sum = new int[length + 1];
         sum[1] = nums[0];
         for (int i = 2; i <= length; i++) {
-            for (int j = i-2; j>=0; j--)
-                sum[i] = Math.max(sum[j] + nums[i-1], sum[i]);
+            sum[i] = Math.max(sum[i-1], sum[i-2] + nums[i-1]);
         }
 
-        return Math.max(sum[length], sum[length - 1]);
+        return sum[length];
     }
